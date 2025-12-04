@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECHNIX 7.0 | Where Pirates Conquer Technology</title>
+    <style>
+        :root {
+            --pirate-red: #C00D0D;
+            --ocean-blue: #0A4A8A;
+            --treasure-gold: #F0B800;
+            --night-black: #1A1A2E;
+            --cloud-white: #F8F9FA;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: var(--night-black);
+            color: var(--cloud-white);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            border-bottom: 2px solid var(--pirate-red);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            color: var(--treasure-gold);
+        }
+        
+        .logo span {
+            color: var(--pirate-red);
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+            margin-bottom: 40px;
+        }
+        
+        .hero h2 {
+            font-size: 36px;
+            color: var(--treasure-gold);
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #ddd;
+        }
+        
+        .dates {
+            display: inline-block;
+            background: var(--pirate-red);
+            color: white;
+            padding: 10px 30px;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        
+        /* Events Section */
+        .events {
+            padding: 40px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            color: var(--treasure-gold);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--pirate-red);
+            margin: 10px auto;
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .event-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(240,184,0,0.2);
+            border-radius: 10px;
+            padding: 25px;
+            transition: transform 0.3s;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--treasure-gold);
+        }
+        
+        .event-card h3 {
+            color: var(--treasure-gold);
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .event-card p {
+            color: #ccc;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .event-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .detail {
+            text-align: center;
+        }
+        
+        .detail-label {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .detail-value {
+            font-size: 16px;
+            color: var(--treasure-gold);
+            font-weight: bold;
+        }
+        
+        /* Registration Form */
+        .registration {
+            background: rgba(10,74,138,0.1);
+            padding: 50px 0;
+            border-top: 2px solid var(--ocean-blue);
+            border-bottom: 2px solid var(--ocean-blue);
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(26,26,46,0.9);
+            padding: 40px;
+            border-radius: 10px;
+            border: 2px solid var(--pirate-red);
+        }
+        
+        .form-title {
+            text-align: center;
+            color: var(--treasure-gold);
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ddd;
+            font-weight: bold;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(240,184,0,0.3);
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--treasure-gold);
+        }
+        .form-control option{
+            color:black;
+        }
+        
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23F0B800' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--pirate-red);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #A00A0A;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .contact-info {
+            margin-top: 20px;
+            color: var(--treasure-gold);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .hero h2 {
+                font-size: 28px;
+            }
+            
+            .form-container {
+                padding: 25px;
+            }
+            
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <h1>TECH<span>NIX</span> 7.0</h1>
+            </div>
+            <div class="dates">4th & 5th December</div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h2>WHERE PIRATES CONQUER TECHNOLOGY</h2>
+            <p>Welcome aboard the Grand Line of Technology! Join us for Technix 7.0 - A One Piece themed tech adventure.</p>
+            <div class="dates">BMSIT&M Department of MCA</div>
+        </div>
+    </section>
+    
+    <section class="events">
+        <div class="container">
+            <h2 class="section-title">EVENTS</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <h3>Vegapunk's Code Lab</h3>
+                    <p>Coding & Debugging Challenge</p>
+                    <div class="event-details">
+                        <div class="detail">
+                            <div class="detail-label">Team Size</div>
+                            <div class="detail-value">Duo</div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail-label">Prize</div>
+                            <div class="detail-value">₹2000</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <h3>Ohara Knowledge Hunt</h3>
+                    <p>IT Quiz Competition</p>
+                    <div class="event-details">
+                        <div class="detail">
+                            <div class="detail-label">Team Size</div>
+                            <div class="detail-value">Duo</div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail-label">Prize</div>
+                            <div class="detail-value">₹2000</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <h3>Franky's Workshop</h3>
+                    <p>Web Design Competition</p>
+                    <div class="event-details">
+                        <div class="detail">
+                            <div class="detail-label">Team Size</div>
+                            <div class="detail-value">Duo</div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail-label">Prize</div>
+                            <div class="detail-value">₹2000</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <h3>Luffy's Guessing Gear</h3>
+                    <p>Tech Charades</p>
+                    <div class="event-details">
+                        <div class="detail">
+                            <div class="detail-label">Team Size</div>
+                            <div class="detail-value">Duo</div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail-label">Prize</div>
+                            <div class="detail-value">₹2000</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <h3>Zoro's Battle Arena</h3>
+                    <p>BGMI Gaming Tournament</p>
+                    <div class="event-details">
+                        <div class="detail">
+                            <div class="detail-label">Team Size</div>
+                            <div class="detail-value">4 Members</div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail-label">Prize</div>
+                            <div class="detail-value">₹3000</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <h3>Laugh Tale Treasure Quest</h3>
+                    <p>Treasure Hunt</p>
+                    <div class="event-details">
+                        <div class="detail">
+                            <div class="detail-label">Team Size</div>
+                            <div class="detail-value">4 Members</div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail-label">Prize</div>
+                            <div class="detail-value">₹3000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="registration">
+        <div class="container">
+            <div class="form-container">
+                <h2 class="form-title">REGISTER NOW</h2>
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" class="form-control" required placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required placeholder="Enter your email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="college">College Name</label>
+                        <input type="text" id="college" class="form-control" required placeholder="Enter your college name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" required placeholder="Enter your phone number">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event">Select Event</label>
+                        <select id="event" class="form-control" required>
+                            <option value="">Choose an event...</option>
+                            <option value="Vegapunk's Code Lab">Vegapunk's Code Lab (Coding & Debugging)</option>
+                            <option value="Ohara Knowledge Hunt">Ohara Knowledge Hunt (IT Quiz)</option>
+                            <option value="Franky's Workshop">Franky's Workshop (Web Designing)</option>
+                            <option value="Fleet Admiral's Command Room">Fleet Admiral's Command Room (IT Manager)</option>
+                            <option value="Luffy's Guessing Gear">Luffy's Guessing Gear (Tech Charades)</option>
+                            <option value="Usopp's Snapshot Studio">Usopp's Snapshot Studio (Photography)</option>
+                            <option value="Zoro's Battle Arena">Zoro's Battle Arena (BGMI Gaming)</option>
+                            <option value="Laugh Tale Treasure Quest">Laugh Tale Treasure Quest (Treasure Hunt)</option>
+                            <option value="Gum-Gum Wildcard Arena">Gum-Gum Wildcard Arena (Surprise Event)</option>
+                            <option value="Shanks Instinct Trials">Shanks Instinct Trials (Quick Shot)</option>
+                            <option value="Wano Rhythms Arena">Wano Rhythms Arena (Dance Competition)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="teamSize">Team Size</label>
+                        <select id="teamSize" class="form-control" required>
+                            <option value="">Select team size...</option>
+                            <option value="Solo">Solo (1 person)</option>
+                            <option value="Duo">Duo (2 people)</option>
+                            <option value="Team of 4">Team of 4</option>
+                            <option value="Team of 4-6">Team of 4-6</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="teamMembers">Team Member Names (if team event)</label>
+                        <textarea id="teamMembers" class="form-control" rows="3" placeholder="Enter names of all team members separated by commas"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">REGISTER FOR EVENT</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>TECHNIX 7.0 - Where Pirates Conquer Technology</p>
+            <p>BMS Institute of Technology & Management | Department of MCA</p>
+            <p class="contact-info">Email: technix7.0team@gmail.com | 4th & 5th December 2024</p>
+            <p style="margin-top: 20px; font-size: 12px;">© 2024 TECHNIX 7.0. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Form submission handling
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('fullName').value;
+            const event = document.getElementById('event').value;
+            
+            // Simple validation
+            if (!name || !event) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Show success message
+            alert(`Registration Successful!\n\n${name}, you have registered for:\n${event}\n\nFurther details will be sent to your email.`);
+            
+            // Reset form
+            document.getElementById('registrationForm').reset();
+            
+            // In a real implementation, you would send this data to a server
+            console.log('Registration submitted:', {
+                name: name,
+                email: document.getElementById('email').value,
+                college: document.getElementById('college').value,
+                phone: document.getElementById('phone').value,
+                event: event,
+                teamSize: document.getElementById('teamSize').value,
+                teamMembers: document.getElementById('teamMembers').value
+            });
+        });
+        
+        // Update team size based on selected event
+        document.getElementById('event').addEventListener('change', function() {
+            const eventSelect = this.value;
+            const teamSizeSelect = document.getElementById('teamSize');
+            
+            // Reset team size
+            teamSizeSelect.value = '';
+            
+            // Set appropriate team size based on event
+            if (eventSelect.includes("Fleet Admiral") || eventSelect.includes("Usopp")) {
+                teamSizeSelect.value = 'Solo';
+            } else if (eventSelect.includes("Zoro") || eventSelect.includes("Laugh Tale") || 
+                      eventSelect.includes("Gum-Gum") || eventSelect.includes("Wano")) {
+                if (eventSelect.includes("Wano")) {
+                    teamSizeSelect.value = 'Team of 4-6';
+                } else {
+                    teamSizeSelect.value = 'Team of 4';
+                }
+            } else if (eventSelect) {
+                // Default for most events
+                teamSizeSelect.value = 'Duo';
+            }
+        });
+    </script>
+</body>
+</html>
