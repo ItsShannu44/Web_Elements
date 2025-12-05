@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Straw Hat Pirates Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 50%, #01579b 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Ocean wave animation */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('https://i.imgur.com/mC8iIqK.png') repeat-x;
+            background-size: 1000px 100px;
+            animation: wave 15s linear infinite;
+            opacity: 0.6;
+        }
+        
+        .wave:nth-child(2) {
+            animation: wave 18s linear infinite;
+            opacity: 0.4;
+            bottom: 10px;
+            animation-delay: -5s;
+        }
+        
+        .wave:nth-child(3) {
+            animation: wave 20s linear infinite;
+            opacity: 0.2;
+            bottom: 15px;
+            animation-delay: -2s;
+        }
+        
+        @keyframes wave {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 1000px; }
+        }
+        
+        /* One Piece themed characters */
+        .character {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+        
+        .luffy {
+            background-image: url('https://i.imgur.com/6Q9W6c1.png');
+            top: 10%;
+            left: 5%;
+        }
+        
+        .zoro {
+            background-image: url('https://i.imgur.com/vNn7JyO.png');
+            top: 15%;
+            right: 8%;
+            transform: scaleX(-1);
+        }
+        
+        .nami {
+            background-image: url('https://i.imgur.com/qpG4KvK.png');
+            bottom: 20%;
+            left: 10%;
+        }
+        
+        .sunny {
+            position: absolute;
+            width: 120px;
+            height: 80px;
+            background-image: url('https://i.imgur.com/9Wp8zKK.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            bottom: 10%;
+            right: 5%;
+            z-index: 1;
+        }
+        
+        /* Login container */
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            width: 90%;
+            max-width: 420px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            position: relative;
+            border: 5px solid #d4af37;
+        }
+        
+        /* Straw Hat Jolly Roger */
+        .jolly-roger {
+            width: 100px;
+            height: 100px;
+            background-image: url('https://i.imgur.com/Tk28K0J.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin: 0 auto 20px;
+        }
+        
+        h1 {
+            color: #1a237e;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #ff6f00;
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        /* Form styling */
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1a237e;
+            font-weight: 600;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1a237e;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input:focus {
+            border-color: #ff6f00;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 111, 0, 0.2);
+        }
+        
+        /* Login button */
+        .login-btn {
+            background: linear-gradient(to right, #ff6f00, #ff8f00);
+            color: white;
+            border: none;
+            padding: 16px;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+        
+        .login-btn:hover {
+            background: linear-gradient(to right, #e65100, #ff6f00);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(255, 111, 0, 0.4);
+        }
+        
+        /* Links and extras */
+        .links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        a {
+            color: #1a237e;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: #ff6f00;
+            text-decoration: underline;
+        }
+        
+        .divider {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+        }
+        
+        .divider:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #ddd;
+        }
+        
+        .divider span {
+            background: white;
+            padding: 0 15px;
+            color: #777;
+            font-size: 14px;
+        }
+        
+        /* Pirate flag options */
+        .crew-options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .crew-flag {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-size: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .crew-flag:hover {
+            transform: scale(1.1);
+        }
+        
+        .crew-flag.active {
+            border-color: #ff6f00;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .character, .sunny {
+                display: none;
+            }
+            
+            .login-container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ocean waves -->
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    
+    <!-- One Piece characters -->
+    <div class="character luffy"></div>
+    <div class="character zoro"></div>
+    <div class="character nami"></div>
+    <div class="sunny"></div>
+    
+    <!-- Login form -->
+    <div class="login-container">
+        <div class="jolly-roger"></div>
+        <h1>Straw Hat Pirates</h1>
+        <p class="subtitle">Enter the Grand Line - Log in to continue your adventure!</p>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Crew Member Name</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" placeholder="Enter your pirate name" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Devil Fruit Password</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-key"></i>
+                    <input type="password" id="password" placeholder="Enter your secret password" required>
+                </div>
+            </div>
+            
+            <button type="submit" class="login-btn">
+                <i class="fas fa-anchor"></i> Set Sail & Login
+            </button>
+            
+            <div class="links">
+                <a href="#"><i class="fas fa-map"></i> Forgot Password?</a>
+                <a href="#"><i class="fas fa-ship"></i> Join a New Crew</a>
+            </div>
+            
+            <div class="divider">
+                <span>Or choose your crew</span>
+            </div>
+            
+            <div class="crew-options">
+                <div class="crew-flag" style="background-image: url('https://i.imgur.com/Tk28K0J.png');" title="Straw Hat Pirates" data-crew="strawhat"></div>
+                <div class="crew-flag" style="background-image: url('https://i.imgur.com/KuSxzBp.png');" title="Heart Pirates" data-crew="heart"></div>
+                <div class="crew-flag" style="background-image: url('https://i.imgur.com/wLKEhJF.png');" title="Whitebeard Pirates" data-crew="whitebeard"></div>
+                <div class="crew-flag" style="background-image: url('https://i.imgur.com/f3V9jqp.png');" title="Red Hair Pirates" data-crew="redhair"></div>
+                <div class="crew-flag" style="background-image: url('https://i.imgur.com/vGNcGjG.png');" title="Big Mom Pirates" data-crew="bigmom"></div>
+            </div>
+            
+            <footer>
+                <p>© One Piece Fan Site | This site is for fan purposes only</p>
+            </footer>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form submission
+            const loginForm = document.getElementById('loginForm');
+            const crewFlags = document.querySelectorAll('.crew-flag');
+            let selectedCrew = 'strawhat';
+            
+            // Set default active crew
+            crewFlags[0].classList.add('active');
+            
+            // Crew selection
+            crewFlags.forEach(flag => {
+                flag.addEventListener('click', function() {
+                    crewFlags.forEach(f => f.classList.remove('active'));
+                    this.classList.add('active');
+                    selectedCrew = this.getAttribute('data-crew');
+                    
+                    // Change the main jolly roger based on selection
+                    const jollyRoger = document.querySelector('.jolly-roger');
+                    jollyRoger.style.backgroundImage = `url('${this.style.backgroundImage}')`;
+                });
+            });
+            
+            // Handle form submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                // Simple validation
+                if (username.trim() === '' || password.trim() === '') {
+                    alert('Please fill in both fields to set sail!');
+                    return;
+                }
+                
+                // In a real application, this would be an API call
+                // For demo purposes, we'll just show an alert
+                const crewNames = {
+                    strawhat: 'Straw Hat Pirates',
+                    heart: 'Heart Pirates',
+                    whitebeard: 'Whitebeard Pirates',
+                    redhair: 'Red Hair Pirates',
+                    bigmom: 'Big Mom Pirates'
+                };
+                
+                const crewName = crewNames[selectedCrew];
+                
+                // Show loading effect on button
+                const loginBtn = document.querySelector('.login-btn');
+                const originalText = loginBtn.innerHTML;
+                loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Setting Sail...';
+                loginBtn.disabled = true;
+                
+                // Simulate API call delay
+                setTimeout(() => {
+                    alert(`Ahoy, ${username}! Welcome to the ${crewName}! Your adventure begins now!`);
+                    
+                    // Reset button
+                    loginBtn.innerHTML = originalText;
+                    loginBtn.disabled = false;
+                    
+                    // In a real app, you would redirect or perform actual login here
+                    // window.location.href = 'dashboard.html';
+                }, 1500);
+            });
+            
+            // Add some interactivity to the character icons
+            const characters = document.querySelectorAll('.character');
+            characters.forEach(char => {
+                char.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.1)';
+                });
+                
+                char.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
